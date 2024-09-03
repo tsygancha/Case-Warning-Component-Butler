@@ -1,0 +1,25 @@
+<template>
+    <div class="caseWarningComponent">
+        <template if:true={feedback}>
+            <div class="componentHeader">
+                <div class="statusCircle" style={circleStyle}>
+                    <lightning-icon icon-name={statusIcon} alternative-text="status" class="componentIcon" size="small"></lightning-icon>
+                </div>
+                <div class="componentLabel">
+                    <div class="componentTitle">Case Warning</div>
+                </div>
+            </div>
+            <div class="separator"></div>
+            <div class="status-container">
+                <div class="feedbackSection" style={feedbackStyle}>{feedback}</div>
+            </div>
+        </template>
+    </div>
+    <lightning-flow
+            if:true={renderFlow}
+            class="warningFlow"
+            flow-api-name={flowName}
+            flow-input-variables={inputVariables}
+            onstatuschange={handleStatusChange}>
+    </lightning-flow>
+</template>

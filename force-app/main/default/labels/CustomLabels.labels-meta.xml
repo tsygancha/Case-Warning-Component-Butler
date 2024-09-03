@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomLabels xmlns="http://soap.sforce.com/2006/04/metadata">
+    <labels>
+        <fullName>errorFeedback</fullName>
+        <categories>Case Warning</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>errorFeedback</shortDescription>
+        <value>Please contact your customer service manager for further information.</value>
+    </labels>
+    <labels>
+        <fullName>problemFeedback</fullName>
+        <categories>Case Warning</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>problemFeedback</shortDescription>
+        <value>Your account exceeds the limit of cases. Please contact your Account Manager to negotiate a starter package.</value>
+    </labels>
+    <labels>
+        <fullName>successFeedback</fullName>
+        <categories>Case Warning</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>successFeedback</shortDescription>
+        <value>Your account is in excellent condition. There are no issues with handling your cases.</value>
+    </labels>
+    <labels>
+        <fullName>warningFeedback</fullName>
+        <categories>Case Warning</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>warningFeedback</shortDescription>
+        <value>We noticed an increase in cases. If the customer is in a startup phase and shows signs of improvement, take no action. Otherwise, contact the Account Manager to negotiate a starter package.</value>
+    </labels>
+</CustomLabels>

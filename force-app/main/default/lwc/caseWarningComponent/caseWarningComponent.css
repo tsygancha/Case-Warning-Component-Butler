@@ -1,0 +1,63 @@
+.caseWarningComponent{
+    font-family: "Salesforce Sans", "Source Sans Pro", sans-serif;
+    font-size: 16px;
+    background-color: white;
+    border: 1px solid #c9c9c9;
+    border-radius: 4px;
+    padding: 10px;
+}
+
+.componentHeader{
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.statusCircle {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.componentIcon{
+    --slds-c-icon-color-foreground-default: white;
+}
+
+.componentInfoIcon{
+    --slds-c-icon-color-foreground-default: #A9A9A9;
+}
+
+.warningFlow{
+    display: none;
+}
+
+.status-container{
+    line-height: 1.5;
+    text-align: center;
+}
+
+.componentLabel{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.separator{
+    width: 100%;
+    height: 1px;
+    /*background-color: #eb5f41;*/
+    background-color: #cbd5e1;
+    margin: 10px 0;
+}
+
+.feedbackSection{
+    text-align: center;
+    font-weight: bold;
+    padding: 10px;
+    border-radius: 4px;
+}
