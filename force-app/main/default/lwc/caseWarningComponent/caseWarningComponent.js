@@ -1,4 +1,4 @@
-import { LightningElement, api, wire, track } from 'lwc';
+import { LightningElement, api, wire} from 'lwc';
 import { getRecord } from "lightning/uiRecordApi";
 
 const ACCOUNT_FIELDS = ['Account.Number_of_Cases_Monthly_Allowed__c'];
@@ -7,28 +7,21 @@ const BASE_FIELDS = ['Account.Id', 'Case.Id'];
 
 export default class CaseWarningComponent extends LightningElement {
     @api recordId;
-    @track recordType;
-    @track feedback = '';
-    @track feedbackColor = '';
-    @track feedbackTextColor = '';
-    @track statusIcon = '';
-    @track renderFlow = true;
+    recordType;
+    feedback = '';
+    feedbackColor = '';
+    feedbackTextColor = '';
+    statusIcon = '';
+    renderFlow = true;
     flowName = 'Case_Warning';
 
 
     @wire(getRecord, { recordId: '$recordId', fields: BASE_FIELDS })
     initialFetch({ error, data }) {
         if (data) {
+            this.recordType = data.apiName;
 
-            if (data.apiName === 'Account') {
-                this.recordType = 'Account';
-            } else if (data.apiName === 'Case') {
-                this.recordType = 'Case';
-            }
-            this.renderFlow = false;
-            setTimeout(() => {
-                this.renderFlow = true;
-            }, 0);
+            this.toggleRenderFlow();
         } else if (error) {
             console.error('Error retrieving record data', error);
         }
@@ -36,9 +29,7 @@ export default class CaseWarningComponent extends LightningElement {
 
     @wire(getRecord, { recordId: '$recordId', fields: '$fieldsToFetch' })
     wiredSpecificFields({ error, data }) {
-        if (data) {
-            // console.log('Fetched Specific Fields:', JSON.stringify(data, null, 2));
-        } else if (error) {
+        if (error) {
             console.error('Error fetching specific fields', error);
         }
     }
@@ -73,19 +64,36 @@ export default class CaseWarningComponent extends LightningElement {
 
         if (outputVars && outputVars.length > 0) {
             outputVars.forEach(element => {
-                if (element.name === 'feedback') {
-                    this.feedback = element.value;
-                } else if (element.name === 'feedbackBackgroundColor') {
-                    this.feedbackColor = element.value;
-                } else if (element.name === 'feedbackTextColor') {
-                    this.feedbackTextColor = element.value;
-                } else if (element.name === 'circleColor') {
-                    this.circleColor = element.value;
-                } else if (element.name === 'feedbackHeaderIcon') {
-                    this.statusIcon = element.value;
-                }
+                this.fetchElement(element);
             });
         }
+    }
+
+    fetchElement(element) {
+        switch (element.name) {
+            case 'feedback':
+                this.feedback = element.value;
+                break;
+            case 'feedbackBackgroundColor':
+                this.feedbackColor = element.value;
+                break;
+            case 'feedbackTextColor':
+                this.feedbackTextColor = element.value;
+                break;
+            case 'circleColor':
+                this.circleColor = element.value;
+                break;
+            case 'feedbackHeaderIcon':
+                this.statusIcon = element.value;
+                break;
+        }
+    }
+
+    toggleRenderFlow() {
+        this.renderFlow = false;
+        setTimeout(() => {
+            this.renderFlow = true;
+        }, 0);
     }
 
     get feedbackStyle() {
